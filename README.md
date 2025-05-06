@@ -1,42 +1,45 @@
-# Local Prompt Library
+# Recipe Finder
 
-A locally-hosted tool for saving, managing, and retrieving system prompts for LLMs (Large Language Models).
+A web application for discovering, searching, and sharing recipes.
 
 ## Purpose
 
-The Local Prompt Library allows you to create, store, search, update, and retrieve system prompts for various large language models. By storing prompts locally, you maintain full control over your prompt engineering assets and can quickly access them whenever needed.
+Recipe Finder allows users to search for recipes shared by others in the community. The application provides an intuitive interface to browse recipes by categories, ingredients, or cooking time, making it easy to find the perfect meal for any occasion.
 
 ## Features
 
 ### Phase 1 (Current)
-- Create and save system prompts
-- Search for prompts by keywords or tags
-- Update existing prompts
-- Basic user interface with Flask, Jinja, HTML, CSS, and minimal JavaScript
+- Search for recipes by name, ingredients, or categories
+- View detailed recipe instructions and ingredients
+- Browse popular and recently added recipes
+- Basic recipe listing and filtering
+- Flask backend with API endpoints
+- React frontend for modern user experience
 
 ### Phase 2 (Upcoming)
-- React-based frontend for improved user experience
-- Advanced prompt organization with folders and categories
-- Prompt version history
-- Import/export functionality
-- Prompt testing and evaluation tools
+- User authentication and profiles
+- Personal recipe collections and favorites
+- Recipe creation and sharing
+- Rating and review system
+- Advanced filtering and sorting options
+- Social features (following users, sharing recipes)
 
 ## Architecture
 
 ```mermaid
 graph TD
     subgraph "Phase 1 - Current"
-        A[User] --> B[Flask Backend]
-        B --> C[(Local Database)]
-        B --> D[Jinja Templates]
-        D --> E[HTML/CSS/JS Frontend]
+        A[User] --> G[React Frontend]
+        G --> F[Flask API]
+        F --> C[(Database)]
     end
     
     subgraph "Phase 2 - Upcoming"
-        A --> F[Flask API]
-        F --> C
-        A --> G[React Frontend]
+        A --> G
         G --> F
+        F --> C
+        F --> H[Authentication]
+        H --> I[User Profiles]
     end
 ```
 
@@ -45,80 +48,92 @@ graph TD
 ```mermaid
 sequenceDiagram
     participant User
-    participant Frontend
-    participant Backend
+    participant Frontend as React Frontend
+    participant Backend as Flask API
     participant Database
     
-    User->>Frontend: Request action (create/search/update)
-    Frontend->>Backend: Send request
-    Backend->>Database: Query/modify data
+    User->>Frontend: Search for recipes
+    Frontend->>Backend: API request
+    Backend->>Database: Query recipes
     Database-->>Backend: Return results
-    Backend-->>Frontend: Return response
-    Frontend-->>User: Display results/confirmation
+    Backend-->>Frontend: JSON response
+    Frontend-->>User: Display recipe results
+    
+    User->>Frontend: Select recipe
+    Frontend->>Backend: Get recipe details
+    Backend->>Database: Fetch recipe data
+    Database-->>Backend: Return recipe details
+    Backend-->>Frontend: JSON response
+    Frontend-->>User: Display detailed recipe view
 ```
 
 ## Project Structure
 
 ```mermaid
 graph LR
-    A[local-prompt-library] --> B[backend]
+    A[recipe-finder] --> B[backend]
+    A --> N[frontend]
     A --> C[README.md]
     A --> D[requirements.txt]
+    
     B --> E[app]
     B --> F[prompter.py]
     E --> G[__init__.py]
     E --> H[routes.py]
-    E --> I[templates]
-    I --> J[index.html]
-    E --> K[static]
-    K --> L[css]
-    K --> M[js]
+    E --> I[models.py]
+    
+    N --> O[public]
+    N --> P[src]
+    P --> Q[components]
+    P --> R[pages]
+    P --> S[services]
+    P --> T[styles]
 ```
 
 ## Setup and Installation
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/username/local-prompt-library.git
-   cd local-prompt-library
+   git clone https://github.com/username/recipe-finder.git
+   cd recipe-finder
    ```
 
-2. Create and activate a virtual environment
-   ```bash
-   python -m venv env
-   source env/bin/activate  # On Windows: env\Scripts\activate
-   ```
-
-3. Install dependencies
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Run the application
+2. Backend Setup
    ```bash
    cd backend
+   python -m venv env
+   source env/bin/activate  # On Windows: env\Scripts\activate
+   pip install -r requirements.txt
    python prompter.py
    ```
 
-5. Open your browser and navigate to `http://localhost:5000`
+3. Frontend Setup
+   ```bash
+   cd ../frontend
+   npm install
+   npm start
+   ```
+
+4. Open your browser and navigate to `http://localhost:3000`
 
 ## Development Roadmap
 
-### Phase 1: Flask + Jinja + Basic Frontend
+### Phase 1: Core Recipe Search Functionality
 - [x] Project setup
 - [ ] Database schema design
-- [ ] Basic CRUD operations for prompts
-- [ ] Simple search functionality
-- [ ] Basic UI with Jinja templates
-- [ ] Deployment instructions
+- [ ] Flask API endpoints for recipe search
+- [ ] Basic recipe data model
+- [ ] React frontend setup
+- [ ] Recipe listing and search components
+- [ ] Recipe detail view
 
-### Phase 2: React Frontend
-- [ ] API development
-- [ ] React app setup
-- [ ] Advanced UI components
-- [ ] Enhanced search and filtering
-- [ ] User preferences
-- [ ] Prompt categorization and tagging
+### Phase 2: User Accounts and Social Features
+- [ ] User authentication system
+- [ ] User profiles
+- [ ] Recipe creation and management
+- [ ] Favorite recipes and collections
+- [ ] Social sharing functionality
+- [ ] Rating and review system
 
 ## Contributing
 
