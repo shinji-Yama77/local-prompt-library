@@ -1,28 +1,28 @@
-# Recipe Finder
+# Code Snipers
 
-A web application for discovering, searching, and sharing recipes.
+A web application for discovering, uploading, and sharing reusable code snippets.
 
 ## Purpose
 
-Recipe Finder allows users to search for recipes shared by others in the community. The application provides an intuitive interface to browse recipes by categories, ingredients, or cooking time, making it easy to find the perfect meal for any occasion.
+Code Snipers allows users to save and search for reusable code snippets shared by others in the developer community. The application provides an intuitive interface to browse snippets by language, tags, or use case, making it easy to find the perfect code template for any project.
 
 ## Features
 
 ### Phase 1 (Current)
-- Search for recipes by name, ingredients, or categories
-- View detailed recipe instructions and ingredients
-- Browse popular and recently added recipes
-- Basic recipe listing and filtering
+- Search for code snippets by language, tag, or description
+- View detailed code with syntax highlighting and explanations
+- Browse popular and recently added snippets
+- Basic snippet listing and filtering
 - Flask backend with API endpoints
 - React frontend for modern user experience
 
 ### Phase 2 (Upcoming)
 - User authentication and profiles
-- Personal recipe collections and favorites
-- Recipe creation and sharing
-- Rating and review system
+- Personal snippet collections and favorites
+- Snippet creation and sharing
+- Rating and comment system
 - Advanced filtering and sorting options
-- Social features (following users, sharing recipes)
+- Social features (following users, sharing snippets)
 
 ## Architecture
 
@@ -52,50 +52,47 @@ sequenceDiagram
     participant Backend as Flask API
     participant Database
     
-    User->>Frontend: Search for recipes
+    User->>Frontend: Search for code snippets
     Frontend->>Backend: API request
-    Backend->>Database: Query recipes
+    Backend->>Database: Query snippets
     Database-->>Backend: Return results
     Backend-->>Frontend: JSON response
-    Frontend-->>User: Display recipe results
+    Frontend-->>User: Display snippet results
     
-    User->>Frontend: Select recipe
-    Frontend->>Backend: Get recipe details
-    Backend->>Database: Fetch recipe data
-    Database-->>Backend: Return recipe details
+    User->>Frontend: Select snippet
+    Frontend->>Backend: Get snippet details
+    Backend->>Database: Fetch snippet data
+    Database-->>Backend: Return snippet details
     Backend-->>Frontend: JSON response
-    Frontend-->>User: Display detailed recipe view
+    Frontend-->>User: Display code with syntax highlighting
 ```
 
 ## Project Structure
 
 ```mermaid
 graph LR
-    A[recipe-finder] --> B[backend]
-    A --> N[frontend]
+    A[code-snipers] --> B[backend]
+    A --> N[client]
     A --> C[README.md]
-    A --> D[requirements.txt]
     
     B --> E[app]
     B --> F[prompter.py]
     E --> G[__init__.py]
     E --> H[routes.py]
-    E --> I[models.py]
     
-    N --> O[public]
     N --> P[src]
     P --> Q[components]
-    P --> R[pages]
-    P --> S[services]
-    P --> T[styles]
+    P --> R[App.jsx]
+    P --> S[main.jsx]
+    P --> T[styles.css]
 ```
 
 ## Setup and Installation
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/username/recipe-finder.git
-   cd recipe-finder
+   git clone https://github.com/username/code-snipers.git
+   cd code-snipers
    ```
 
 2. Backend Setup
@@ -109,31 +106,33 @@ graph LR
 
 3. Frontend Setup
    ```bash
-   cd ../frontend
+   cd ../client
    npm install
-   npm start
+   npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:3000`
+4. Open your browser and navigate to `http://localhost:5173`
 
 ## Development Roadmap
 
-### Phase 1: Core Recipe Search Functionality
+### Phase 1: Core Snippet Functionality
 - [x] Project setup
-- [ ] Database schema design
-- [ ] Flask API endpoints for recipe search
-- [ ] Basic recipe data model
+- [ ] Database schema design for code snippets
+- [ ] Flask API endpoints for snippet search and retrieval
+- [ ] Code snippet data model with language and tag support
 - [ ] React frontend setup
-- [ ] Recipe listing and search components
-- [ ] Recipe detail view
+- [ ] Snippet listing and search components
+- [ ] Syntax highlighting for multiple languages
+- [ ] Snippet detail view with copy functionality
 
 ### Phase 2: User Accounts and Social Features
 - [ ] User authentication system
-- [ ] User profiles
-- [ ] Recipe creation and management
-- [ ] Favorite recipes and collections
+- [ ] User profiles and dashboards
+- [ ] Snippet creation and management
+- [ ] Personal snippet collections and favorites
 - [ ] Social sharing functionality
-- [ ] Rating and review system
+- [ ] Rating and comment system
+- [ ] Snippet version control
 
 ## Contributing
 
