@@ -23,6 +23,17 @@ export default function App() {
             <h1 className="text-xl font-bold">CodeVault</h1>
         </div>
         <Navbar />
+        <div className="p-4 border-t border-slate-700">
+          <div className="flex items-center">
+            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center mr-2">
+              <User size={16} />
+            </div>
+            <div>
+              <p className="text-sm font-medium">Developer</p>
+              <p className="text-xs" style={{ color: secondaryTextColor}}>Free Account</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="flex-1 flex flex-col overflow-hidden" style={{ backgroundColor: mainContentColor}}>
         <header className="h-15.25 border-b border-slate-700 flex items-center justify-between px-6">
