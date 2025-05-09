@@ -13,7 +13,7 @@ const sideNavColor = "#0f172a";
 
 export default function Navbar() {
     const [active, setActiveTab] = useState()
-
+  
 
     return (
         <nav className="flex-1 overflow-y-auto p-2" style={{ backgroundColor: sideNavColor}}>
