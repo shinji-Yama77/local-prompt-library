@@ -1,5 +1,6 @@
-import { Search, Code, Folder, PlusCircle, Settings, Moon, User } from 'lucide-react';
-import Navbar from './components/Navbar/Navbar';
+import { Search, Code, Folder, PlusCircle, Settings, Moon, User,  Star} from 'lucide-react';
+import Navbar from './components/Navbar';
+import AllSnippets from './pages/AllSnippets';
 
 export default function App() {
 
@@ -8,12 +9,6 @@ export default function App() {
   const distinctColor = "#E8A317";
   const mainContentColor = "#1e293b"; // Slightly lighter blue for main content
   const secondaryTextColor = "#94a3b8"; // Secondary text
-
-  const sideNavItems = [
-    { id: 'all', icon: <Code size={20} />, label: 'All Snippets' },
-    { id: 'folders', icon: <Folder size={20} />, label: 'Folders' },
-    { id: 'settings', icon: <Settings size={20} />, label: 'Settings' }
-  ];
 
   return (
     <div className="flex h-screen w-full bg-slate-900 text-slate-200 overflow-hidden">
@@ -35,17 +30,25 @@ export default function App() {
           </div>
         </div>
       </div>
-      <div className="flex-1 flex flex-col overflow-hidden" style={{ backgroundColor: mainContentColor}}>
-        <header className="h-15.25 border-b border-slate-700 flex items-center justify-between px-6">
-            <div className="relative w-96">
-              <input
-                type="text"
-                placeholder="Search snippets..."
-                className="w-full py-2 pl-10 pr-4 rounded-md bg-slate-800 border border-slate-700 focus:outline-none focus:border-blue-500"
-              />
-              <Search size={18} className="absolute left-3 top-3" style={{ color: secondaryTextColor }} />
+      <div className="flex-1 flex flex-col overflow-hidden rounded-xl" style={{ backgroundColor: mainContentColor}}>
+        <main className="flex-1 overflow-y-auto p-4">
+          <div className="flex flex-col justify-between items-start mb-6">
+            <div>
+              <h2 className="text-2xl font-bold">Community Snippets</h2>
+              <p className="text-slate-400 mt-2">Discover and use code snippets from developers worldwide</p>
             </div>
-        </header>
+            <div className="mt-4 relative w-full">
+              <input 
+                type="text"
+                placeholder="Search snippets..." 
+                className="bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2 w-full text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <Search size={16} className="absolute left-3 top-3.25 text-slate-500" />
+            </div>
+          </div>
+          <AllSnippets />
+        </main>
+        
       </div>
       
       

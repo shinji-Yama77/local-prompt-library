@@ -1,9 +1,10 @@
-import { Search, Code, Folder, PlusCircle, Settings, Moon, User } from 'lucide-react';
+import { Search, Code, Folder, PlusCircle, Settings, Moon, User, Star } from 'lucide-react';
 import { useState } from 'react';
 
 const sideNavItems = [
     { id: 'all', icon: <Code size={20} />, label: 'All Snippets' },
-    { id: 'folders', icon: <Folder size={20} />, label: 'Folders' },
+    { id: 'favorites', icon: <Star size={20} />, label: 'My Snippets'},
+    { id: 'folders', icon: <Folder size={20} />, label: 'Shared Folders' },
     { id: 'settings', icon: <Settings size={20} />, label: 'Settings' }
   ];
 
@@ -12,7 +13,7 @@ const sideNavColor = "#0f172a";
 
 
 export default function Navbar() {
-    const [active, setActiveTab] = useState()
+    const [active, setActiveTab] = useState('all')
   
 
     return (
